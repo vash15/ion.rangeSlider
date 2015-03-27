@@ -9,8 +9,23 @@
 // Released under MIT licence:
 // http://ionden.com/a/plugins/licence-en.html
 // =====================================================================================================================
+;(function (document, window, navigator, undefined, factory) {
 
-;(function ($, document, window, navigator, undefined) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery', document, window, navigator, undefined], function(){
+            return factory.apply(window, arguments);
+        });
+
+    } else if (typeof module === 'object' && module.exports) {
+        // CommonJS
+        module.exports = factory.call(window, require('jquery'), document, window, navigator, undefined );
+    } else {
+        // Browser globals
+        factory.call(window, window.jQuery, document, window, navigator, undefined );
+    }
+
+}(function ($, document, window, navigator, undefined) {
     "use strict";
 
     // =================================================================================================================
