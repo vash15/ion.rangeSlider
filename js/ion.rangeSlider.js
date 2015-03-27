@@ -9,23 +9,23 @@
 // Released under MIT licence:
 // http://ionden.com/a/plugins/licence-en.html
 // =====================================================================================================================
-;(function (document, window, navigator, undefined, factory) {
+;(function (root, factory) {
 
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['jquery', document, window, navigator, undefined], function(){
-            return factory.apply(window, arguments);
+        define(['jquery'], function(jquery){
+            return factory.call(root, jquery, document, window, navigator, undefined );
         });
 
     } else if (typeof module === 'object' && module.exports) {
         // CommonJS
-        module.exports = factory.call(window, require('jquery'), document, window, navigator, undefined );
+        module.exports = factory.call(root, require('jquery'), document, window, navigator, undefined );
     } else {
         // Browser globals
-        factory.call(window, window.jQuery, document, window, navigator, undefined );
+        factory.call(root, root.jQuery, document, window, navigator, undefined );
     }
 
-}(function ($, document, window, navigator, undefined) {
+}(typeof global === 'object' ? global : this, function ($, document, window, navigator, undefined) {
     "use strict";
 
     // =================================================================================================================
@@ -1900,4 +1900,4 @@
             };
     }());
 
-} (jQuery, document, window, navigator));
+}));
